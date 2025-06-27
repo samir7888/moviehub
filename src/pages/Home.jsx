@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import { getPopularMovies, searchMovies } from "../services/api";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
@@ -58,7 +59,9 @@ const Home = () => {
       ) : (
         <div className="movies-grid">
           {movies.map((movie) => (
+            <Link key={movie.id} to={`https://ww4.fmovies.co/search/?q=${movie.title}`} target="_blank" className="movie-link">
             <MovieCard key={movie.id} movie={movie} />
+            </Link>
           ))}
         </div>
       )}
